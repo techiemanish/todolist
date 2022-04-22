@@ -49,11 +49,15 @@ function App() {
         <input type="task" onChange={(e) => handle(e)} value={data.task} className="form-control" id="task" aria-describedby="task"/>
       </div>
       <button onClick={submitTask} className="btn btn-primary" disabled={data.task.length === 0}>Submit</button>&nbsp;
-      <button onClick={clear} className="btn btn-danger mx-2">Clear</button><br/>
-    
+      <button onClick={clear} className="btn btn-danger mx-2 my-2">Clear</button>
+      <div className='mt-3' style={{float:"right"}}>
+      <b className='text-primary'>Total Task: {id}</b>
+      <b className='mx-2 text-success'>Completed: {id - objArr.length}</b>
+      </div>
     </div>
-    <hr/>
-    <div className='container w-50 text-primary p-3 ' >
+    <hr className='text-primary'/>
+    <div className='container w-50 text-primary p-3' >
+    
       {
         objArr.map((element)=>{
           return <span key={element.key} className='lead rounded-3' style={{fontSize:"30px"}} >{element.key+1}. {element.task} <button onClick={() => remove(element.key)} className='btn btn-danger' style={{float:"right"}}>Remove</button><br/></span>
