@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-
   const [id, setId] = useState(0);
 
   const [data, setData] = useState({
@@ -39,6 +38,15 @@ function App() {
     
   }
 
+  useEffect(()=>{
+    if(id >= 1){
+      document.title = `ToDoList (${objArr.length})`;
+    }else{
+      document.title = `ToDoList`;
+    }
+  },[id,objArr])
+  // const [style, setStyle] = useState("lead rounded-3 text-light bg-success p-2");
+
   return (
     <>
     <center><h2 className='text-primary'>To Do List</h2></center>
@@ -60,7 +68,11 @@ function App() {
     
       {
         objArr.map((element)=>{
-          return <span key={element.key} className='lead rounded-3' style={{fontSize:"30px"}} >{element.key+1}. {element.task} <button onClick={() => remove(element.key)} className='btn btn-danger' style={{float:"right"}}>Remove</button><br/></span>
+          return <p key={element.key} className="lead rounded-3 text-light bg-primary p-2" style={{fontSize:"30px",overflow:"auto"}} >{element.key+1}. {element.task} 
+          <button onClick={() => remove(element.key)} className='btn btn-danger my-1 mx-2' style={{float:"right"}}>Remove</button>
+          {/* <button onClick={() => console.log("testing")} className='btn btn-success mx-2 my-1' style={{float:"right"}}>Completed</button> */}
+          <br/>
+          </p>
         })
       }
      
